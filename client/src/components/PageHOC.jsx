@@ -25,6 +25,16 @@ const PageHOC = (Component, title, description) => () => {
 
           <Component />
         </div>
+
+        <p className={styles.footerText}>Made with ❤ by Ang</p>
+      </div>
+
+      <div className="flex flex-1">
+        <img
+          src={heroImg}
+          alt="hero-img"
+          className="w-full xl:h-full object-cover"
+        />
       </div>
     </div>
   );
