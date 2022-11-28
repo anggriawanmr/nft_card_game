@@ -3,7 +3,11 @@ import React from 'react';
 import { PageHOC } from '../components';
 
 const CreateBattle = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h1 className="text-white text-xl">Hello From createBattle</h1>
+    </div>
+  );
 };
 
 export default PageHOC(
