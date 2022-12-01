@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context';
 import { PageHOC } from '../components';
 
 const Home = () => {
-  const {} = useGlobalContext();
+  const { contract, walletAddress } = useGlobalContext();
 
   return (
     <div>
