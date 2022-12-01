@@ -13,17 +13,21 @@ const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const [walletAddress, setWalletAddress] = useState('');
+  const [provider, setProvider] = useState('');
+  const [contract, setContract] = useState('');
 
   const updateCurrentWalletAddress = async () => {
     const accounts = await window.ethereum.requests({
       method: 'eth_requestAccounts',
     });
 
-    console.log(accounts);
+    if (accounts) setWalletAddress(accounts[0]);
   };
 
   useEffect(() => {
     updateCurrentWalletAddress();
+
+    window.ethereum.on('accountsChanged', updateCurrentWalletAddress);
   }, []);
 
   useEffect(() => {
@@ -32,7 +36,10 @@ export const GlobalContextProvider = ({ children }) => {
       const connection = await Web3Modal.connect();
       const newProvider = new ethers.providers.Web3Provider(connection);
       const signer = newProvider.signer();
-      const newContract = new ethers.Contract();
+      const newContract = new ethers.Contract(ADDRESS, ABI, signer);
+
+      setProvider(newProvider);
+      setContract(newContract);
     };
 
     setSmartContractAndProvider();
