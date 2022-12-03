@@ -7,8 +7,8 @@ const Home = () => {
   const { contract, walletAddress } = useGlobalContext();
 
   return (
-    <div>
-      <h1 className="text-xl text-white"></h1>
+    <div className="flex flex-col">
+      <CustomInput />
     </div>
   );
 };
