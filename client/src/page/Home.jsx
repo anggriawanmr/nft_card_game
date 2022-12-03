@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useGlobalContext } from '../context';
-import { PageHOC, CustomInput } from '../components';
+import { PageHOC, CustomInput, CustomButton } from '../components';
 
 const Home = () => {
   const { contract, walletAddress } = useGlobalContext();
@@ -15,6 +15,8 @@ const Home = () => {
         value={playerName}
         handleValueChange={setPlayerName}
       />
+
+      <CustomButton title="Register" handleClick={() => {}} restType="mt-6" />
     </div>
   );
 };
