@@ -1,6 +1,10 @@
 import React from 'react';
 
-const CustomInput = () => {
+import styles from '../styles';
+
+const regex = /^[A-Za-z0-9]+$/;
+
+const CustomInput = ({ label, placeholder, value, handleValue }) => {
   return <div>CustomInput</div>;
 };
 
