@@ -7,6 +7,14 @@ const Home = () => {
   const { contract, walletAddress } = useGlobalContext();
   const [playerName, setPlayerName] = useState('');
 
+  const handleClick = async () => {
+    try {
+      await contract.isPlayer(walletAddress);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <CustomInput
