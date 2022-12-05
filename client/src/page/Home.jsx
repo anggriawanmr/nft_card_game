@@ -4,12 +4,22 @@ import { useGlobalContext } from '../context';
 import { PageHOC, CustomInput, CustomButton } from '../components';
 
 const Home = () => {
-  const { contract, walletAddress } = useGlobalContext();
+  const { contract, walletAddress, setShowAlert } = useGlobalContext();
   const [playerName, setPlayerName] = useState('');
 
   const handleClick = async () => {
     try {
-      await contract.isPlayer(walletAddress);
+      const playerExists = await contract.isPlayer(walletAddress);
+
+      if (!playerExists) {
+        await contract.registerPlayer(playerName, playerName);
+
+        setShowAlert({
+          status: 'true',
+          type: 'info',
+          message: `${playerName} is being summoned!`,
+        });
+      }
     } catch (error) {
       alert(error);
     }
