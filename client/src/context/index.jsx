@@ -42,7 +42,7 @@ export const GlobalContextProvider = ({ children }) => {
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const newProvider = new ethers.providers.Web3Provider(connection);
-      const signer = newProvider.signer();
+      const signer = newProvider.getSigner();
       const newContract = new ethers.Contract(ADDRESS, ABI, signer);
 
       setProvider(newProvider);
