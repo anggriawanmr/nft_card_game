@@ -12,7 +12,13 @@ const addNewEvent = (evenFilter, provider, cb) => {
   });
 };
 
-export const createEventListener = ({}) => {
+export const createEventListener = ({
+  navigate,
+  contract,
+  provider,
+  walletAddress,
+  setShowAlert,
+}) => {
   const NewPlayerEventFilter = contract.filter.newPlayer();
 
   addNewEvent(NewPlayerEventFilter, provider, ({ args }) => {
