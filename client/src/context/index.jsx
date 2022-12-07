@@ -21,6 +21,7 @@ export const GlobalContextProvider = ({ children }) => {
     type: 'info',
     message: '',
   });
+  const [battleName, setBattleName] = useState('');
 
   const navigate = useNavigate();
 
@@ -63,6 +64,8 @@ export const GlobalContextProvider = ({ children }) => {
         provider,
         walletAddress,
         setShowAlert,
+        battleName,
+        setBattleName,
       });
     }
   }, [contract]);

@@ -6,10 +6,32 @@ import { useGlobalContext } from '../context';
 import { CustomButton, CustomInput, PageHOC } from '../components';
 
 const CreateBattle = () => {
+  const { contract, battleName, setBattleName } = useGlobalContext();
+  const navigate = useNavigate();
+
+  const handleClick = () => {};
+
   return (
-    <div>
-      <h1 className="text-white text-xl">Hello From createBattle</h1>
-    </div>
+    <>
+      <div className="flex flex-col mb-5">
+        <CustomInput
+          label="Battle"
+          placeholder="Enter battle name"
+          value={battleName}
+          handleValueChange={setBattleName}
+        />
+
+        <CustomButton
+          title="Create Battle"
+          handleClick={handleClick}
+          restStyles="mt-6"
+        />
+      </div>
+
+      <p className={styles.infoText} onClick={() => navigate('/join-battle')}>
+        Or join already existing battle
+      </p>
+    </>
   );
 };
 

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { useGlobalContext } from '../context';
 import { PageHOC, CustomInput, CustomButton } from '../components';
-import { useEffect } from 'react';
 
 const Home = () => {
   const { contract, walletAddress, setShowAlert } = useGlobalContext();
