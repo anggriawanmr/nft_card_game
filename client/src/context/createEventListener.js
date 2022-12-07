@@ -7,5 +7,23 @@ const addNewEvent = (evenFilter, provider, cb) => {
 
   provider.on(eventFilter, (logs) => {
     const parsedLog = new ethers.utils.Interface(ABI).parseLog(logs);
+
+    cb(parsedLog);
+  });
+};
+
+export const createEventListener = ({}) => {
+  const NewPlayerEventFilter = contract.filter.newPlayer();
+
+  addNewEvent(NewPlayerEventFilter, provider, ({ args }) => {
+    console.log('New Player created!', args);
+
+    if (walletAddress === args.owner) {
+      setShowAlert({
+        status: true,
+        type: 'success',
+        message: 'Player has been successfully registered',
+      });
+    }
   });
 };
