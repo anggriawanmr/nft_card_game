@@ -82,7 +82,10 @@ const Battle = () => {
     <div
       className={`${styles.flexBetween} ${styles.gameContainer} ${battleGround}`}
     >
-      <h1 className="text-xl">{battleName}</h1>
+      {showAlert?.stats && (
+        <Alert type={showAlert.type} message={showAlert.message} />
+      )}
+      <PlayerInfo player={player2} playerIcon={player02Icon} mt />
     </div>
   );
 };
