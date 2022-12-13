@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 
 import { ABI } from '../contract';
 
-const addNewEvent = (evenFilter, provider, cb) => {
+const addNewEvent = (eventFilter, provider, cb) => {
   provider.removeListener(eventFilter);
 
   provider.on(eventFilter, (logs) => {
@@ -18,6 +18,7 @@ export const createEventListener = ({
   provider,
   walletAddress,
   setShowAlert,
+  setUpdateGameData,
 }) => {
   const NewPlayerEventFilter = contract.filter.newPlayer();
 
@@ -44,5 +45,7 @@ export const createEventListener = ({
     ) {
       navigate(`/battle/${args.battleName}`);
     }
+
+    setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
   });
 };
