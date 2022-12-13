@@ -32,4 +32,17 @@ export const createEventListener = ({
       });
     }
   });
+
+  const newBattleEventFilter = contract.filter.newBattle();
+
+  addNewEvent(newBattleEventFilter, provider, ({ args }) => {
+    console.log('New Battle Started!', args, walletAddress);
+
+    if (
+      walletAddress.toLowerCase() === args.player1.toLowerCase() ||
+      walletAddress.toLowerCase() === args.player2.toLowerCase()
+    ) {
+      navigate(`/battle/${args.battleName}`);
+    }
+  });
 };
