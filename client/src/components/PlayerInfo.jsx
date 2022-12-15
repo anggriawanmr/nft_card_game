@@ -30,9 +30,27 @@ const PlayerInfo = ({ player, playerIcon, mt }) => {
             className={`${styles.playerHealthBar} ${healthLevel(
               player.health
             )} ${marginIndexing(index)} `}
-          ></div>;
+          />;
         })}
       </div>
+
+      <div
+        data-for={`Mana-${mt ? '1' : '2'}`}
+        data-tip="Mana"
+        className={`${styles.flexCenter} ${styles.glassEffect} ${styles.playerMana}`}
+      >
+        {player.mana || 0}
+      </div>
+
+      <ReactTooltip
+        id={`Player-${mt ? '1' : '2'}`}
+        effect="solid"
+        backgroundColor="#7f46f0"
+      >
+        <p>
+          <span>Name:</span>
+        </p>
+      </ReactTooltip>
     </div>
   );
 };
