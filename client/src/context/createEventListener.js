@@ -16,6 +16,15 @@ const addNewEvent = (eventFilter, provider, cb) => {
   });
 };
 
+const getCoords = (cardRef) => {
+  const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+
+  return {
+    pageX: left + width / 2,
+    pageY: top + height / 2.25,
+  };
+};
+
 export const createEventListener = ({
   navigate,
   contract,
@@ -23,6 +32,8 @@ export const createEventListener = ({
   walletAddress,
   setShowAlert,
   setUpdateGameData,
+  player1Ref,
+  player2Ref,
 }) => {
   const NewPlayerEventFilter = contract.filter.newPlayer();
 
@@ -66,9 +77,9 @@ export const createEventListener = ({
     for (let i = 0; args.damagedPlayers.length; i += 1) {
       if (args.damagedPlayers[i] !== emptyAccount) {
         if (args.damagedPlayers[i] === walletAddress) {
-          sparcle();
+          sparcle(getCoords(player1Ref));
         } else if (args.damagedPlayers[i] !== walletAddress) {
-          sparcle();
+          sparcle(getCoords(player2Ref));
         }
       } else {
         playAudio(defenseSound);
