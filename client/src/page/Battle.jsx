@@ -80,6 +80,18 @@ const Battle = () => {
 
   const makeAMove = async (choice) => {
     playAudio(choice === 1 ? attackSound : defenseSound);
+
+    try {
+      await contract.attackOrDefendChoice(choice, battleName);
+
+      setShowAlert({
+        status: true,
+        type: 'info',
+        message: `Initiating ${choice === 1 ? 'attack' : 'defense'}`,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -96,7 +108,7 @@ const Battle = () => {
         <div className="flex items-center flex-row">
           <ActionButton
             imgUrl={attack}
-            handleClick={() => makeMove(1)}
+            handleClick={() => makeAMove(1)}
             restStyles="mr-2 hover:border-yellow-400"
           />
           <Card
@@ -107,7 +119,7 @@ const Battle = () => {
           />
           <ActionButton
             imgUrl={defense}
-            handleClick={() => makeMove(2)}
+            handleClick={() => makeAMove(2)}
             restStyles="ml-6 hover:border-red-600"
           />
         </div>
