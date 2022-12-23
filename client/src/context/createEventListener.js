@@ -85,5 +85,7 @@ export const createEventListener = ({
         playAudio(defenseSound);
       }
     }
+
+    setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
   });
 };
