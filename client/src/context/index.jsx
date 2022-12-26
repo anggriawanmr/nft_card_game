@@ -178,6 +178,7 @@ export const GlobalContextProvider = ({ children }) => {
         setBattleGround,
         player1Ref,
         player2Ref,
+        updateCurrentWalletAddress,
       }}
     >
       {children}
