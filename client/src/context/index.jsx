@@ -38,12 +38,12 @@ export const GlobalContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const battlegroundFromLocalStorage = localStorage.getItem('battleground');
+    const isBattleground = localStorage.getItem('battleground');
 
-    if (battlegroundFromLocalStorage) {
-      setBattleGround(battlegroundFromLocalStorage);
+    if (isBattleground) {
+      setBattleGround(isBattleground);
     } else {
-      battlegroundFromLocalStorage.setItem('battleground', battleGround);
+      localStorage.setItem('battleground', battleGround);
     }
   }, []);
 
